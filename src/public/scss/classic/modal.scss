@@ -1,0 +1,32 @@
+.fbx-classic {
+  &.fbx-large-ui,
+  &.fbx-no-mobile {
+    --count-align: center;
+    --count-font-size: 9px;
+
+    background-color: var(--overlay-color);
+
+    .fbx-overlay {
+      padding: calc( var(--button-size) / 2 + var(--button-spacing) + var(--border-width) ) calc( var(--button-size) + var(--button-spacing) );
+    }
+
+    .fbx-inner {
+      position: relative;
+      top: auto;
+      left: auto;
+      bottom: auto;
+      right: auto;
+      box-sizing: content-box;
+      width: 100%;
+      height: 100%;
+      border: solid var(--border-width) var(--primary-color);
+      border-radius: var(--border-radius);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .fbx-count {
+      bottom: var(--negative-border-width);
+      transform: translateY(100%);
+    }
+  }
+}

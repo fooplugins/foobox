@@ -1,0 +1,65 @@
+.fbx-disable-transitions,
+.fbx-disable-transitions * {
+  transition-property: none!important;
+  transition-duration: 0s!important;
+  transition-timing-function: initial!important;
+}
+
+.fbx-has-transition {
+  .fbx-loader,
+  .fbx-item-content,
+  .fbx-info {
+    transition-duration: var(--transition-duration);
+    transition-property: opacity, visibility;
+    transition-timing-function: linear;
+  }
+}
+
+.fbx-transition-fade {
+  .fbx-item {
+    opacity: 0;
+    visibility: hidden;
+    transition-duration: var(--transition-duration);
+    transition-property: opacity, visibility;
+    transition-timing-function: linear;
+
+    &.fbx-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.fbx-transition-horizontal {
+  .fbx-item {
+    transform: translateX(0);
+    transition-duration: var(--transition-duration);
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
+
+    &.fbx-transition-out {
+      transform: translateX(100%);
+    }
+    &.fbx-transition-in {
+      transform: translateX(-100%);
+    }
+    &.fbx-transition-out.fbx-visible,
+    &.fbx-transition-in.fbx-visible {
+      transform: translateX(0);
+    }
+  }
+  .fbx-reverse-transition {
+    .fbx-item {
+      &.fbx-transition-out {
+        transform: translateX(-100%);
+      }
+      &.fbx-transition-in {
+        transform: translateX(100%);
+      }
+      &.fbx-transition-out.fbx-visible,
+      &.fbx-transition-in.fbx-visible {
+        transform: translateX(0);
+      }
+    }
+  }
+}

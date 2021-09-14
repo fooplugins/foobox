@@ -1,0 +1,81 @@
+.fbx-modal {
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: var(--primary-color);
+}
+.fbx-overlay {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  transform: translateZ(0);
+  background-color: var(--overlay-color);
+}
+.fbx-inner {
+  display: flex;
+  background-color: var(--secondary-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0;
+}
+.fbx-count {
+  pointer-events: none;
+  position: absolute;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 1em;
+  padding: var(--button-spacing);
+  text-align: var(--count-align);
+  font-size: var(--count-font-size);
+  color: var(--count-text-color);
+  z-index: 1;
+}
+
+@media (orientation: portrait) and (max-width: 600px){
+  .fbx-inner {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 600px){
+  .fbx-inner {
+    flex-direction: row;
+  }
+  .fbx-count {
+    right: var(--button-size-mobile);
+    width: calc( 100% - var(--button-size-mobile) );
+  }
+}
+
+//.fbx-large-ui {
+//  .fbx-inner {
+//    padding: var(--button-spacing) calc(var(--button-spacing) * 2 + var(--button-size));
+//  }
+//}

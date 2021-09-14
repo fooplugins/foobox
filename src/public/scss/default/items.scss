@@ -1,0 +1,107 @@
+.fbx-items {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  padding: 0;
+  z-index: 2;
+}
+
+//@media (orientation: portrait) and (max-width: 600px){
+//  .fbx-items {
+//    padding-top: calc( var(--button-size-mobile) + var(--button-spacing) );
+//  }
+//}
+//
+//@media (orientation: landscape) and (max-height: 600px){
+//  .fbx-items {
+//    padding-right: calc( var(--button-size-mobile) + var(--button-spacing) );
+//  }
+//}
+
+
+.fbx-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 32px;
+
+  &.fbx-loading {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .fbx-loading-icon {
+    color: var(--primary-text-color);
+    background-color: var(--primary-color);
+    width: 1em;
+    height: 1em;
+    box-sizing: content-box;
+    border: solid 0.4em var(--primary-color);
+    border-radius: 50%;
+  }
+}
+
+.fbx-item {
+  --button-spacing-2: calc( var(--button-spacing) * 2 );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: var(--button-spacing);
+  left: var(--button-spacing);
+  right: var(--button-spacing);
+  bottom: var(--button-spacing);
+  width: calc( 100% - var(--button-spacing-2) );
+  height: calc( 100% - var(--button-spacing-2) );
+  max-width: calc( 100% - var(--button-spacing-2) );
+  max-height: calc( 100% - var(--button-spacing-2) );
+
+  &.fbx-item-prev {
+    z-index: 1;
+  }
+  &.fbx-item-next {
+    z-index: 2;
+  }
+}
+.fbx-item-content {
+  visibility: visible;
+  opacity: 1;
+  max-width: 100%;
+  max-height: 100%;
+
+  &.fbx-loading {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+.fbx-type-html {
+  display: inline-block;
+  height: auto;
+}
+.fbx-type-image {
+  display: block;
+  height: auto;
+}
+.fbx-type-iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}

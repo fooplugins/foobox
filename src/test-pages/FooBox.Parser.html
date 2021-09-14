@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    /*html, body { background-color: #444; }*/
+  </style>
+  <link href="../../assets/public/css/foobox.css" rel="stylesheet" type="text/css"/>
+  <script src="jquery.min.js"></script>
+  <script>
+    var FOOBOX = {
+      "parser": {
+        "types": {
+          "image": {
+            "regex": /^https?:\/\/(.*?\/.*?\.(jpg|jpeg|png|gif|bmp|webp|svg)|fakeimg\.pl\/.*)/i
+          }
+        }
+      },
+      "defaults": {},
+      "custom": {}
+    };
+  </script>
+  <script src="../../assets/public/js/foobox.js"></script>
+  <style>
+    .gallery {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .gallery > a {
+      display: block;
+      width: 75px;
+      height: 75px;
+      margin: 5px;
+      text-align: center;
+      text-decoration: none;
+      color: #FFF;
+      background-color: #777;
+      border: solid 1px currentColor;
+      vertical-align: middle;
+      line-height: 75px;
+    }
+  </style>
+</head>
+<body>
+<h4>Modern</h4>
+<div class="gallery" data-foobox='{"layout":"modern","transition":"fade"}'>
+  <a href="https://example.com" target="foobox">
+    Iframe
+  </a>
+  <a href="https://fakeimg.pl/720x480/aaff00/000000/?font_size=24&text=720x480" data-title="Title for Index 1" data-description="The description for index 1. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/720x480/007cd3/000000/?font_size=24&text=720x480" data-title="Title for Index 2" data-description="The description for index 2. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/480x720/ff0000/000000/?font_size=24&text=480x720" data-title="Title for Index 3" data-description="The description for index 3. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    480x720
+  </a>
+  <a href="https://fakeimg.pl/1920x1200/007cd3/000000/?font_size=24&text=1920x1200" data-title="Title for Index 4" data-description="The description for index 4. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    1920x1200
+  </a>
+</div>
+<div class="gallery" data-foobox='{"layout":"modern","transition":"horizontal"}'>
+  <a href="https://example.com" target="foobox">
+    Iframe
+  </a>
+  <a href="https://fakeimg.pl/720x480/aaff00/000000/?font_size=24&text=720x480" data-title="Title for Index 1" data-description="The description for index 1. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/720x480/007cd3/000000/?font_size=24&text=720x480" data-title="Title for Index 2" data-description="The description for index 2. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/480x720/ff0000/000000/?font_size=24&text=480x720" data-title="Title for Index 3" data-description="The description for index 3. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    480x720
+  </a>
+  <a href="https://fakeimg.pl/1920x1200/007cd3/000000/?font_size=24&text=1920x1200" data-title="Title for Index 4" data-description="The description for index 4. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    1920x1200
+  </a>
+</div>
+<h4>Classic</h4>
+<div class="gallery" data-foobox='{"layout":"classic"}'>
+  <a href="https://example.com" target="foobox">
+    Iframe
+  </a>
+  <a href="https://fakeimg.pl/720x480/aaff00/000000/?font_size=24&text=720x480" data-title="Title for Index 1" data-description="The description for index 1. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/720x480/007cd3/000000/?font_size=24&text=720x480" data-title="Title for Index 2" data-description="The description for index 2. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/480x720/ff0000/000000/?font_size=24&text=480x720" data-title="Title for Index 3" data-description="The description for index 3. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    480x720
+  </a>
+  <a href="https://fakeimg.pl/1920x1200/007cd3/000000/?font_size=24&text=1920x1200" data-title="Title for Index 4" data-description="The description for index 4. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    1920x1200
+  </a>
+</div>
+<div class="gallery" data-foobox='{"layout":"classic","transition":"horizontal"}'>
+  <a href="https://example.com" target="foobox">
+    Iframe
+  </a>
+  <a href="https://fakeimg.pl/720x480/aaff00/000000/?font_size=24&text=720x480" data-title="Title for Index 1" data-description="The description for index 1. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/720x480/007cd3/000000/?font_size=24&text=720x480" data-title="Title for Index 2" data-description="The description for index 2. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/480x720/ff0000/000000/?font_size=24&text=480x720" data-title="Title for Index 3" data-description="The description for index 3. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    480x720
+  </a>
+  <a href="https://fakeimg.pl/1920x1200/007cd3/000000/?font_size=24&text=1920x1200" data-title="Title for Index 4" data-description="The description for index 4. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    1920x1200
+  </a>
+</div>
+<h4>Metro</h4>
+<div class="gallery" data-foobox='{"layout":"metro","transition":"fade"}'>
+  <a href="https://example.com" target="foobox">
+    Iframe
+  </a>
+  <a href="https://fakeimg.pl/720x480/aaff00/000000/?font_size=24&text=720x480" data-title="Title for Index 1" data-description="The description for index 1. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/720x480/007cd3/000000/?font_size=24&text=720x480" data-title="Title for Index 2" data-description="The description for index 2. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/480x720/ff0000/000000/?font_size=24&text=480x720" data-title="Title for Index 3" data-description="The description for index 3. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    480x720
+  </a>
+  <a href="https://fakeimg.pl/1920x1200/007cd3/000000/?font_size=24&text=1920x1200" data-title="Title for Index 4" data-description="The description for index 4. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    1920x1200
+  </a>
+</div>
+<div class="gallery" data-foobox='{"layout":"metro","transition":"horizontal"}'>
+  <a href="https://example.com" target="foobox">
+    Iframe
+  </a>
+  <a href="https://fakeimg.pl/720x480/aaff00/000000/?font_size=24&text=720x480" data-title="Title for Index 1" data-description="The description for index 1. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/720x480/007cd3/000000/?font_size=24&text=720x480" data-title="Title for Index 2" data-description="The description for index 2. This can be a fairly long description if required but for now we are simply testing with a medium one.">
+    720x480
+  </a>
+  <a href="https://fakeimg.pl/480x720/ff0000/000000/?font_size=24&text=480x720" data-title="Title for Index 3" data-description="The description for index 3. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    480x720
+  </a>
+  <a href="https://fakeimg.pl/1920x1200/007cd3/000000/?font_size=24&text=1920x1200" data-title="Title for Index 4" data-description="The description for index 4. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence. This can be a fairly long description if required and for this item we are going to simply duplicate this last sentence.">
+    1920x1200
+  </a>
+</div>
+<button data-foobox='{"transition":"horizontal","items":["https://example.com","https://fakeimg.pl/720x480/aaff00/000000/?font_size=24&text=720x480","https://fakeimg.pl/480x720/ff0000/000000/?font_size=24&text=480x720","https://fakeimg.pl/1920x1200/007cd3/000000/?font_size=24&text=1920x1200"]}'>View</button>
+
+</body>
+</html>

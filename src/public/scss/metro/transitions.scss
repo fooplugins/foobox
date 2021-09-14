@@ -1,0 +1,17 @@
+.fbx-metro {
+  &.fbx-large-ui,
+  &.fbx-no-mobile {
+    &.fbx-has-transition {
+      .fbx-inner {
+        transition-property: width, height;
+        transition-timing-function: ease-in-out;
+        transition-duration: var(--resize-duration);
+      }
+      .fbx-button {
+        transition-property: color, border-color;
+        transition-timing-function: ease-in-out;
+        transition-duration: 0.3s;
+      }
+    }
+  }
+}

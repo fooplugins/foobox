@@ -1,0 +1,41 @@
+.fbx-modal {
+  --side-content-width: 400px;
+  --transition-duration: 0.4s;
+  --icon-size: 16px;
+
+  --overlay-color: rgba(0, 0, 0, 0.5);
+  --overlay-text-color: #FFF;
+
+  --primary-color: #FFF;
+  --primary-text-color: #333;
+
+  --secondary-color: #CCC;
+  --secondary-text-color: #222;
+
+  --loader-color: var(--overlay-color);
+  --loader-text-color: var(--overlay-text-color);
+
+  --button-size: 32px;
+  --button-size-mobile: calc( var(--button-size) * 1.5 );
+  --button-color: var(--primary-color);
+  --button-text-color: var(--primary-text-color);
+  --button-border-color: var(--secondary-color);
+
+  --info-font-size: 12px;
+  --info-max-lines: 8;
+  --info-spacing: 10px;
+  --info-side-width: 400px;
+
+  --count-align: right;
+  --count-font-size: 12px;
+  --count-text-color: var(--secondary-text-color);
+
+  --thumbs-height: 100px;
+  --thumbs-width: 300px;
+  --thumbs-color: var(--primary-color);
+  --thumbs-text-color: var(--primary-color);
+  --thumbs-border-color: var(--secondary-color);
+
+  --spacing-1: 10px;
+  --button-spacing: 5px;
+}

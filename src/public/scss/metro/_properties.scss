@@ -1,0 +1,13 @@
+.fbx-metro {
+  --secondary-color: #222;
+  --secondary-text-color: #fff;
+
+  --border-width: 15px;
+  --border-top-width: 50px;
+  --border-bottom-width: 20px;
+  --border-color: var(--primary-color);
+  --negative-border-width: calc(var(--border-width) * -1);
+
+  --button-border-color: var(--border-color);
+  --resize-duration: calc( var(--transition-duration) / 2 );
+}

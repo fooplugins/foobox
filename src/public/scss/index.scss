@@ -1,0 +1,12 @@
+[class|="fbx"] {
+  box-sizing: border-box;
+}
+@import "default/properties";
+@import "modern/properties";
+@import "classic/properties";
+@import "metro/properties";
+
+@import "default/index";
+@import "modern/index";
+@import "classic/index";
+@import "metro/index";
