@@ -1,19 +1,61 @@
 const gulp = require("gulp");
-const tasks = require("@steveush/gulp-tasks");
+const gulpWpPot = require("gulp-wp-pot");
+const gulpZip = require("gulp-zip");
+const gulpFreemius = require("gulp-freemius-deploy");
+const del = require("del");
 const pkg = require("./package.json");
-const raw = require("./gulpfile.config.js");
+const freemiusConfig = require("./fs-config.json");
 
-// get the compiled config
-const config = tasks.packagify(raw, pkg);
+// register the freemius-deploy task
+gulpFreemius(gulp, {
+    ...freemiusConfig,
+    zip_name: `${pkg.name}.v${pkg.version}.zip`,
+    zip_path: "./dist/",
+    add_contributor: true
+});
 
-// register all tasks
-tasks.registerAll(gulp, config);
+// clean up the files created by the tasks
+function clean(){
+    return del([
+        `./languages/${pkg.name}.pot`,
+        `./dist/${pkg.name}.v${pkg.version}.zip`
+    ]);
+}
 
-// the default task executed when you just run `gulp` on the command line
-gulp.task("default", gulp.series( "clean", "copy", gulp.parallel( "scss", "scripts", "images", "blocks" )));
+// extract a .pot file from all PHP files excluding those in the node_modules dir
+function translate(){
+    return gulp.src("./**/*.php")
+        .pipe(gulpWpPot({
+            "domain": `${pkg.name}`,
+            "package": `${pkg.title}`,
+            "bugReport": `${pkg.bugs}`,
+            "team": `${pkg.author}`,
+            "lastTranslator": `${pkg.author}`
+        }))
+        .pipe(gulp.dest(`./languages/${pkg.name}.pot`));
+}
 
-// builds the assets and then watches for changes
-gulp.task("develop", gulp.series( "default", "watch" ));
+// create a .zip containing just the production code for the plugin
+function zip(){
+    return gulp.src([
+        "**/*",
+        "!package*.json",
+        "!./{node_modules,node_modules/**/*}",
+        "!./{releases,releases/**/*}",
+        '!./{vendor,vendor/**/*}',
+        "!./{src,src/**/*}",
+        '!./{gutenberg/src,gutenberg/src/**/*,gutenberg/config,gutenberg/config/**/*}',
+        "!fs-config.json",
+        "!composer.json",
+        "!composer.lock",
+        "!gulpfile*.js",
+        "!webpack*.js",
+        "!./{gulpfile.js,gulpfile.js/**/*}",
+        '!README.md',
+        '!Gruntfile.js'
+    ])
+        .pipe(gulpZip(`${pkg.name}.v${pkg.version}.zip`))
+        .pipe(gulp.dest("./dist"));
+}
 
-// builds the assets and then packages the plugin for deployment
-gulp.task("compile", gulp.series( "default", "translate", "zip" ));
+exports.default = gulp.series(clean, translate, zip);

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfoobox=self.webpackChunkfoobox||[]).push([[370],{461:(e,t,o)=>{var n=o(320);let s=null;var a=o(419);((0,n.isPromise)(s)||(s=new Promise((e=>{setTimeout((()=>{"loading"!==document.readyState?e():document.addEventListener("DOMContentLoaded",e,!1)}),0)}))),s).then((()=>a.Z.init(o.g.FOOBOX)))}},e=>{e(e.s=461)}]);
+//# sourceMappingURL=foobox.ready.js.map

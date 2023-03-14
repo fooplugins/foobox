@@ -1,15 +1,22 @@
 <?php
-/*
-Plugin Name: FooBox
-Description: The best lightbox plugin for WordPress!
-Version:     0.0.1
-Author:      FooPlugins
-Plugin URI:  https://github.com/fooplugins/foobox
-Author URI:  info@fooplugins.com
-Text Domain: foobox
-License:     GPL-2.0-or-later
-Domain Path: /languages
+/**
+ * Plugin Name: FooBox (DEV)
+ * Description: The best responsive lightbox for WordPress
+ * Author: FooPlugins
+ * Author URI: https://fooplugins.com
+ * Version: 1.0.0
+ * License: GPL2+
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain: foobox
+ * Domain Path: /languages/
+ *
+ * @package foobox
+ */
 
-@fs_premium_only /includes/pro/, /assets/pro/
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-*/
+define( 'FOOBOX_PATH', plugin_dir_path( __FILE__ ), false );
+define( 'FOOBOX_URL', plugin_dir_url( __FILE__ ), false );

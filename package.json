@@ -3,29 +3,35 @@
   "version": "0.0.1",
   "license": "GPL-2.0-or-later",
   "title": "FooBox",
-  "description": "The best WordPress lightbox!",
+  "description": "The best responsive lightbox plugin for WordPress.",
   "repository": "https://github.com/fooplugins/foobox",
-  "bugs": "https://fooplugins.com",
-  "author": {
-    "name": "FooPlugins",
-    "email": "info@fooplugins.com"
-  },
-  "config": {
-    "namespace": "FooBox"
+  "bugs": "https://github.com/fooplugins/foobox/issues",
+  "author": "FooPlugins <info@fooplugins.com> (https://fooplugins.com)",
+  "devDependencies": {
+    "@svgr/webpack": "^6.5.1",
+    "@wordpress/dependency-extraction-webpack-plugin": "^4.10.0",
+    "@wordpress/scripts": "^25.4.0",
+    "classnames": "^2.3.2",
+    "del": "^6.1.1",
+    "gulp": "^4.0.2",
+    "gulp-freemius-deploy": "^1.0.11",
+    "gulp-wp-pot": "^2.5.0",
+    "gulp-zip": "^5.1.0",
+    "lodash": "^4.17.21",
+    "source-map-loader": "^4.0.1"
   },
   "scripts": {
-    "default": "gulp",
-    "develop": "gulp develop",
-    "compile": "gulp compile",
-    "deploy": "gulp deploy"
-  },
-  "devDependencies": {
-    "@steveush/gulp-tasks": "0.0.2",
-    "@wordpress/scripts": "^17.0.0",
-    "gulp": "^4.0.2",
-    "postcss": "^8.3.6"
-  },
-  "dependencies": {
-    "foo-utils": "^1.0.0"
+    "develop": "set NODE_ENV=development&& npm run build:public-pro",
+    "build": "npm run build:free && npm run build:pro",
+    "build:admin": "webpack build --config=./config/admin.js",
+    "build:admin-pro": "webpack build --config=./config/admin.pro.js",
+    "build:public": "webpack build --config=./config/public.js",
+    "build:public-pro": "webpack build --config=./config/public.pro.js",
+    "build:blocks": "wp-scripts build --config=./config/blocks.js",
+    "build:blocks-pro": "wp-scripts build --config=./config/blocks.pro.js",
+    "build:free": "npm run build:admin && npm run build:public && npm run build:blocks",
+    "build:pro": "npm run build:admin-pro && npm run build:public-pro && npm run build:blocks-pro",
+    "package": "npm run build && gulp",
+    "deploy": "gulp freemius-deploy"
   }
 }
