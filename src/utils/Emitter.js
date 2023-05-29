@@ -60,7 +60,7 @@ class Emitter {
     /**
      * Parses the supplied event type string into its component type and namespace values.
      * @param {string} type - The event type string to parse.
-     * @param {boolean} [required=false] - Whether or not to throw a TypeError if the parsed type is empty.
+     * @param {boolean} [required=false] - Whether to throw a TypeError if the parsed type is empty.
      * @returns {EmitterType}
      * @throws {TypeError} Throws a TypeError if the supplied `type` or return value is invalid.
      */

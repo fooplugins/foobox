@@ -18,10 +18,13 @@
     "gulp-wp-pot": "^2.5.0",
     "gulp-zip": "^5.1.0",
     "lodash": "^4.17.21",
-    "source-map-loader": "^4.0.1"
+    "mini-css-extract-plugin": "^2.7.6",
+    "source-map-loader": "^4.0.1",
+    "to-string-loader": "^1.2.0"
   },
   "scripts": {
-    "develop": "set NODE_ENV=development&& npm run build:public-pro",
+    "develop": "set NODE_ENV=development&& npm run build:public",
+    "develop:pro": "set NODE_ENV=development&& npm run build:public-pro",
     "build": "npm run build:free && npm run build:pro",
     "build:admin": "webpack build --config=./config/admin.js",
     "build:admin-pro": "webpack build --config=./config/admin.pro.js",

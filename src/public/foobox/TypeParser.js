@@ -1,8 +1,8 @@
-import {isFunction, isPlainObject, isStringNotEmpty} from "../../../../../utils/is";
-import {defaults} from "../../../../../utils/object";
-import makeSelector from "../../../../../utils/makeSelector";
-import Item from "../../Container/Item";
+import {isFunction, isPlainObject, isStringNotEmpty} from "../../utils/is";
+import {defaults} from "../../utils/object";
+import makeSelector from "../../utils/makeSelector";
 import PropertyParser from "./PropertyParser";
+import Item from "./Item";
 
 //region type-definitions
 
@@ -35,7 +35,7 @@ import PropertyParser from "./PropertyParser";
 /**
  * Parses item data from various sources depending on configuration.
  */
-class TypeParser {
+export default class TypeParser {
 
     //region static
 
@@ -300,10 +300,10 @@ class TypeParser {
      * Parses the supplied reference object and returns a new ParserItem.
      * @param {Container} parent - The parent container.
      * @param {*} ref - The object to parse.
-     * @param {boolean} [nocache=false] - Whether or not to ignore any cached values when parsing the item.
-     * @returns {?Item} Returns null if parsing fails.
+     * @param {boolean} [nocache=false] - Whether to ignore any cached values when parsing the item.
+     * @returns {Item|null} Returns null if parsing fails.
      */
-    parse(parent, ref, nocache){
+    parse( parent, ref, nocache ){
         let item;
         if (this.#cache.has(ref)){
             item = this.#cache.get(ref);
@@ -349,5 +349,3 @@ class TypeParser {
         return properties;
     }
 }
-
-export default TypeParser;

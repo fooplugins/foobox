@@ -1,7 +1,7 @@
 /**
  * A simple class containing the results of a parsed item.
  */
-class Item {
+export default class Item {
     /**
      * A reference to the parent container this item belongs to.
      */
@@ -42,7 +42,7 @@ class Item {
         this.parent = parent;
         this.type = type;
         this.ref = ref;
-        if (triggerTarget instanceof EventTarget){
+        if ( triggerTarget instanceof EventTarget ){
             this.#triggerTarget = triggerTarget;
         }
     }
@@ -58,12 +58,12 @@ class Item {
     /**
      * @param {EventTarget} value - The EventTarget instance to use as the trigger.
      */
-    set triggerTarget(value){
-        if (value instanceof EventTarget){
+    set triggerTarget( value ){
+        if ( value instanceof EventTarget ){
             this.#triggerTarget = value;
             return;
         }
-        throw new TypeError("The Item.trigger property must be an instance of EventTarget!");
+        throw new TypeError( "The Item.trigger property must be an instance of EventTarget!" );
     }
 
     /**
@@ -71,10 +71,17 @@ class Item {
      * @param {boolean} [nocache=false]
      * @returns {object}
      */
-    getProperties(nocache){
-        const properties = this.type.getProperties(this.ref, nocache);
+    getProperties( nocache ){
+        const properties = this.type.getProperties( this.ref, nocache );
         return { ...properties, type: this.type.name };
     }
-}
 
-export default Item;
+    #properties;
+
+    get properties(){
+        if ( !this.#properties ){
+            this.#properties = this.getProperties();
+        }
+        return this.#properties;
+    }
+}

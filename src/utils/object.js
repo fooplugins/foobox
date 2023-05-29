@@ -1,4 +1,4 @@
-import {isPlainObject, isStringNotEmpty, isUndefined} from "./is";
+import { isObject, isPlainObject, isStringNotEmpty, isUndefined } from "./is";
 
 function hasProperty(target, propertyName){
     if (isPlainObject(target) && isStringNotEmpty(propertyName)){
@@ -198,6 +198,7 @@ function defaults(target, ...sources){
  * @param {objForEach~callback} callback - The callback to execute.
  */
 function objForEach(target, callback){
+    if ( !isObject( target ) ) return;
     Object.keys(target).forEach((key) => {
         callback.call(this, key, target[key]);
     });
@@ -224,9 +225,9 @@ function objForEach(target, callback){
  * @returns {T} The value that results from running the “reducer” callback function to completion over the entire object.
  */
 function objReduce(target, callbackFn, initialValue){
-    return Object.keys(target).reduce((previousValue, key) => {
+    return isObject( target ) ? Object.keys(target).reduce((previousValue, key) => {
         return callbackFn.call(this, previousValue, target[key], key);
-    }, initialValue);
+    }, initialValue) : initialValue;
 }
 
 export {

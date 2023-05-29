@@ -1,10 +1,10 @@
-import {extend} from "../../../../utils/object";
-import {isNumber} from "../../../../utils/is";
+import { extend } from "../../utils/object";
+import { isNumber } from "../../utils/is";
 
 /**
  * A simple class containing the results of parsing a reference object.
  */
-class Container {
+export default class Container {
 
     /**
      * A reference to the parser that produced this result.
@@ -43,11 +43,11 @@ class Container {
      * @param {object} [options] - An object containing any parsed options.
      * @param {?EventTarget} [triggerTarget] - The EventTarget instance that triggers the modal.
      */
-    constructor(parser, ref, options, triggerTarget) {
+    constructor( parser, ref, options, triggerTarget ) {
         this.parser = parser;
         this.ref = ref;
-        this.options = extend({}, options);
-        if (triggerTarget instanceof EventTarget){
+        this.options = extend( {}, options );
+        if ( triggerTarget instanceof EventTarget ){
             this.#triggerTarget = triggerTarget;
         }
     }
@@ -63,12 +63,12 @@ class Container {
     /**
      * @param {EventTarget} value - The EventTarget instance to use as the trigger.
      */
-    set triggerTarget(value){
-        if (value instanceof EventTarget){
+    set triggerTarget( value ){
+        if ( value instanceof EventTarget ){
             this.#triggerTarget = value;
             return;
         }
-        throw new TypeError("The Container.triggerTarget property must be an instance of EventTarget.");
+        throw new TypeError( "The Container.triggerTarget property must be an instance of EventTarget." );
     }
 
     get firstIndex(){
@@ -79,12 +79,12 @@ class Container {
         return this.items.length ? this.items.length - 1 : -1;
     }
 
-    withinRange(index){
-        return isNumber(index) && index >= this.firstIndex && index <= this.lastIndex;
+    withinRange( index ){
+        return isNumber( index ) && index >= this.firstIndex && index <= this.lastIndex;
     }
 
-    getByIndex(index){
-        return this.withinRange(index) ? this.items[index] : null;
+    getByIndex( index ){
+        return this.withinRange( index ) ? this.items[ index ] : null;
     }
 
     /**
@@ -92,7 +92,7 @@ class Container {
      * @returns {?Item}
      */
     getFirst(){
-        return this.firstIndex !== -1 ? this.items[this.firstIndex] : null;
+        return this.firstIndex !== -1 ? this.items[ this.firstIndex ] : null;
     }
 
     /**
@@ -100,42 +100,40 @@ class Container {
      * @returns {?Item}
      */
     getLast(){
-        return this.lastIndex !== -1 ? this.items[this.lastIndex] : null;
+        return this.lastIndex !== -1 ? this.items[ this.lastIndex ] : null;
     }
 
-    getNext(current, allowLoop){
-        const index = this.items.indexOf(current);
-        if (index !== -1){
+    getNext( current, allowLoop ){
+        const index = this.items.indexOf( current );
+        if ( index !== -1 ){
             let nextIndex = index + 1;
-            const withinRange = this.withinRange(nextIndex);
-            if (withinRange){
-                return this.items[nextIndex];
+            const withinRange = this.withinRange( nextIndex );
+            if ( withinRange ){
+                return this.items[ nextIndex ];
             }
-            if (!withinRange && allowLoop){
+            if ( !withinRange && allowLoop ){
                 return this.getFirst();
             }
         }
         return null;
     }
 
-    getPrevious(current, allowLoop){
-        const index = this.items.indexOf(current);
-        if (index !== -1){
+    getPrevious( current, allowLoop ){
+        const index = this.items.indexOf( current );
+        if ( index !== -1 ){
             let previousIndex = index - 1;
-            const withinRange = this.withinRange(previousIndex);
-            if (withinRange){
-                return this.items[previousIndex];
+            const withinRange = this.withinRange( previousIndex );
+            if ( withinRange ){
+                return this.items[ previousIndex ];
             }
-            if (!withinRange && allowLoop){
+            if ( !withinRange && allowLoop ){
                 return this.getLast();
             }
         }
         return null;
     }
 
-    get [Symbol.toStringTag]() {
+    get [ Symbol.toStringTag ]() {
         return "Container";
     }
 }
-
-export default Container;

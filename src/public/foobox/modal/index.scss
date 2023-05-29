@@ -1,0 +1,29 @@
+@import "properties";
+
+html[foobox-open] {
+  overflow: hidden;
+}
+
+[is="foobox-modal"] {
+  display: none;
+  font-family: var( --foobox-font-family );
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: none;
+  background-color: transparent;
+}
+
+[is="foobox-modal"]::backdrop {
+  background-color: var(--foobox-backdrop-color);
+}
+
+[is="foobox-modal"]:is([open]) {
+  display: flex;
+}

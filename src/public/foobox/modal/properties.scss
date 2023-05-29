@@ -1,0 +1,11 @@
+:root, ::backdrop {
+  --foobox-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --foobox-backdrop-color: rgba(0, 0, 0, 0.5);
+
+  --foobox-button-color: #FFF;
+  --foobox-button-filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.8));
+
+  --foobox-caption-background-color: transparent;
+  --foobox-caption-color: #FFF;
+  --foobox-caption-text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+}

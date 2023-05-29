@@ -1,5 +1,5 @@
-import {isFunction, isPlainObject, isStringNotEmpty} from "../../../../../../utils/is";
-import mergeArray from "../../../../../../utils/mergeArray";
+import {isFunction, isPlainObject, isStringNotEmpty} from "../../utils/is";
+import mergeArray from "../../utils/mergeArray";
 
 //region type-definitions
 
@@ -51,7 +51,7 @@ import mergeArray from "../../../../../../utils/mergeArray";
 
 //endregion
 
-class PropertyParser {
+export default class PropertyParser {
 
     //#region static
 
@@ -61,7 +61,7 @@ class PropertyParser {
      * @param {PropertyParser} property - The property object itself.
      * @returns {*}
      */
-    static DEFAULT_CONVERT(value, property){
+    static DEFAULT_CONVERT( value, property ){
         return value;
     }
 
@@ -71,7 +71,7 @@ class PropertyParser {
      * @param {PropertyParser} property - The property object itself.
      * @returns {boolean}
      */
-    static DEFAULT_TEST(value, property){
+    static DEFAULT_TEST( value, property ){
         return value != null && value !== property.defaultValue;
     }
 
@@ -80,11 +80,11 @@ class PropertyParser {
      * @param {propertyParserDefinition} configuration
      * @returns {?PropertyParserDefinition}
      */
-    static DEFINITION(configuration){
-        if (isPlainObject(configuration)){
+    static DEFINITION( configuration ){
+        if ( isPlainObject( configuration ) ){
             return { configuration: /** @type PropertyParser~Configuration */ configuration, ctor: /** @type PropertyParser~ctor */ PropertyParser };
         }
-        if (Array.isArray(configuration) && configuration.length === 2 && isPlainObject(configuration[0]) && isFunction(configuration[1])){
+        if ( Array.isArray( configuration ) && configuration.length === 2 && isPlainObject( configuration[0] ) && isFunction( configuration[1] ) ){
             return { configuration: configuration[0], ctor: configuration[1] };
         }
         return null;
@@ -96,11 +96,11 @@ class PropertyParser {
      * @param {propertyParserDefinition[]} source - The source array to pull definitions from.
      * @returns {propertyParserDefinition[]}
      */
-    static MERGE_DEFINITIONS(target, source){
-        return mergeArray(target, source, (targetDefinition, sourceDefinition) => {
-            const targetDef = PropertyParser.DEFINITION(targetDefinition),
-                sourceDef = PropertyParser.DEFINITION(sourceDefinition);
-            if (!targetDef || !sourceDef) return false;
+    static MERGE_DEFINITIONS( target, source ){
+        return mergeArray( target, source, ( targetDefinition, sourceDefinition ) => {
+            const targetDef = PropertyParser.DEFINITION( targetDefinition ),
+                sourceDef = PropertyParser.DEFINITION( sourceDefinition );
+            if ( !targetDef || !sourceDef ) return false;
             return targetDef.configuration.name === sourceDef.configuration.name;
         });
     }
@@ -111,9 +111,9 @@ class PropertyParser {
      * @param {propertyParserDefinition} definition
      * @returns {?PropertyParser}
      */
-    static create(typeParser, definition){
-        const def = PropertyParser.DEFINITION(definition);
-        return def ? new def.ctor(typeParser, def.configuration) : null;
+    static create( typeParser, definition ){
+        const def = PropertyParser.DEFINITION( definition );
+        return def ? new def.ctor( typeParser, def.configuration ) : null;
     }
 
     /**
@@ -122,12 +122,12 @@ class PropertyParser {
      * @param {propertyParserDefinition[]} propertyParserDefinitions
      * @returns {PropertyParser[]}
      */
-    static createAll(typeParser, propertyParserDefinitions){
-        return propertyParserDefinitions.reduce((result, definition) => {
-            const propertyParser = PropertyParser.create(typeParser, definition);
-            if (propertyParser) result.push(propertyParser);
+    static createAll( typeParser, propertyParserDefinitions ){
+        return propertyParserDefinitions.reduce( ( result, definition ) => {
+            const propertyParser = PropertyParser.create( typeParser, definition );
+            if ( propertyParser ) result.push( propertyParser );
             return result;
-        },/** @type {PropertyParser[]} */ []);
+        },/** @type {PropertyParser[]} */ [] );
     }
 
     /**
@@ -137,15 +137,15 @@ class PropertyParser {
      * @param {boolean} [nocache=false]
      * @returns {?object}
      */
-    static getValues(ref, properties, nocache){
+    static getValues( ref, properties, nocache ){
         const result = {};
-        for (const property of properties){
-            const value = property.getValue(ref, nocache);
-            if (property.required && !property.test(value)){
+        for ( const property of properties ){
+            const value = property.getValue( ref, nocache );
+            if ( property.required && !property.test( value ) ){
                 // if there is a required property that is not supplied then stop parsing and exit early
                 return null;
             } else {
-                result[property.name] = value;
+                result[ property.name ] = value;
             }
         }
         return result;
@@ -160,7 +160,7 @@ class PropertyParser {
      * @param {TypeParser} typeParser - The parent type parser for this instance.
      * @param {PropertyParser~Configuration} configuration - The configuration for this instance.
      */
-    constructor(typeParser, configuration) {
+    constructor( typeParser, configuration ) {
         this.#typeParser = typeParser;
         this.#name = configuration.name;
         this.required = configuration.required ?? false;
@@ -170,11 +170,11 @@ class PropertyParser {
         this.queryParent = configuration.queryParent ?? "^";
         this.queryPath = configuration.queryPath ?? "/";
         this.queryType = configuration.queryType ?? ":";
-        if (Array.isArray(configuration.obj)){
-            this.obj = configuration.obj.map((query) => this.objectQuery(query)).filter((query) => query != null);
+        if ( Array.isArray( configuration.obj ) ){
+            this.obj = configuration.obj.map( ( query ) => this.objectQuery( query ) ).filter( ( query ) => query != null);
         }
-        if (Array.isArray(configuration.elem)){
-            this.elem = configuration.elem.map((query) => this.elementQuery(query)).filter((query) => query != null);
+        if ( Array.isArray( configuration.elem ) ){
+            this.elem = configuration.elem.map( ( query ) => this.elementQuery( query ) ).filter( ( query ) => query != null);
         }
     }
 
@@ -197,6 +197,10 @@ class PropertyParser {
         return this.#typeParser;
     }
 
+    get parser(){
+        return this.typeParser.parser;
+    }
+
     /**
      * The private field used by the 'name' read-only property.
      * @type {string}
@@ -212,7 +216,7 @@ class PropertyParser {
     }
 
     /**
-     * Whether or not this property is required.
+     * Whether this property is required.
      * @type {boolean}
      * @default false
      */
@@ -283,23 +287,23 @@ class PropertyParser {
      * @param {string} query
      * @returns {?ObjectQuery}
      */
-    objectQuery(query){
+    objectQuery( query ){
         /**
          * @typedef {PropertyQuery} ObjectQuery
          * @property {string[]} path
          */
-        if (isStringNotEmpty(query)){
+        if ( isStringNotEmpty( query ) ){
             let name = query, path = [];
-            if (name.indexOf(this.queryPath) !== -1){
-                const parts = name.split(this.queryPath);
+            if ( name.indexOf( this.queryPath ) !== -1 ){
+                const parts = name.split( this.queryPath );
                 name = parts.pop();
-                path.push(parts);
+                path.push( parts );
             }
-            const target = (ref) => {
+            const target = ( ref ) => {
                 let result = ref;
-                for (const part of path){
-                    result = result[part];
-                    if (!result) break;
+                for ( const part of path ){
+                    result = result[ part ];
+                    if ( !result ) break;
                 }
                 return result ?? null;
             };
@@ -307,10 +311,10 @@ class PropertyParser {
                 raw: query,
                 name,
                 path,
-                getValue: (ref) => {
-                    const targetRef = target(ref);
-                    if (targetRef){
-                        return this.convert(targetRef[name]) ?? this.defaultValue;
+                getValue: ( ref ) => {
+                    const targetRef = target( ref );
+                    if ( targetRef ){
+                        return this.convert( targetRef[ name ] ) ?? this.defaultValue;
                     }
                     return this.defaultValue;
                 }
@@ -323,46 +327,46 @@ class PropertyParser {
      * @param {string} query
      * @returns {?ElementQuery}
      */
-    elementQuery(query){
+    elementQuery( query ){
         /**
          * @typedef {PropertyQuery} ElementQuery
          * @property {number} parents
          * @property {?string} selector
          */
-        if (isStringNotEmpty(query)){
+        if ( isStringNotEmpty( query ) ){
             let name = query, parents = 0, selector = null, type = "prop";
-            while(name[0] === this.queryParent){
+            while ( name[0] === this.queryParent ){
                 parents++;
                 name = name.slice(1);
             }
-            if (name.indexOf(this.queryPath) !== -1){
-                const parts = name.split(this.queryPath);
+            if ( name.indexOf( this.queryPath ) !== -1 ){
+                const parts = name.split( this.queryPath );
                 selector = parts[0];
                 name = parts[1];
             }
-            if (name.indexOf(this.queryType) !== -1){
-                const parts = name.split(this.queryType);
+            if ( name.indexOf( this.queryType ) !== -1 ){
+                const parts = name.split( this.queryType );
                 type = parts[0];
                 name = parts[1];
             }
-            const target = (ref) => {
+            const target = ( ref ) => {
                 let result = ref;
-                for (let i = 0; i < parents; i++){
+                for ( let i = 0; i < parents; i++ ){
                     result = result.parentElement;
-                    if (!result) break;
+                    if ( !result ) break;
                 }
-                return result && selector ? result.querySelector(selector) : result;
+                return result && selector ? result.querySelector( selector ) : result;
             };
             let getValue;
-            switch (type){
+            switch ( type ){
                 case "prop":
-                    getValue = (ref) => { return this.convert(ref[name]) ?? this.defaultValue; };
+                    getValue = ( ref ) => { return this.convert( ref[ name ] ) ?? this.defaultValue; };
                     break;
                 case "data":
-                    getValue = (ref) => { return this.convert(ref.dataset[name]) ?? this.defaultValue; };
+                    getValue = ( ref ) => { return this.convert( ref.dataset[ name ] ) ?? this.defaultValue; };
                     break;
                 case "attr":
-                    getValue = (ref) => { return ref.hasAttribute(name) ? this.convert(ref.getAttribute(name)) : this.defaultValue; };
+                    getValue = ( ref ) => { return ref.hasAttribute( name ) ? this.convert( ref.getAttribute( name ) ) : this.defaultValue; };
                     break;
                 default:
                     getValue = () => this.defaultValue;
@@ -374,10 +378,10 @@ class PropertyParser {
                 type,
                 parents,
                 selector,
-                getValue: (ref) => {
-                    const targetRef = target(ref);
-                    if (targetRef){
-                        return getValue(targetRef);
+                getValue: ( ref ) => {
+                    const targetRef = target( ref );
+                    if ( targetRef ){
+                        return getValue( targetRef );
                     }
                     return this.defaultValue;
                 }
@@ -392,39 +396,39 @@ class PropertyParser {
      * @param nocache
      * @returns {*}
      */
-    getValue(ref, nocache){
-        if (!nocache && this.#cache.has(ref)){
-            return this.#cache.get(ref);
+    getValue( ref, nocache ){
+        if ( !nocache && this.#cache.has( ref ) ){
+            return this.#cache.get( ref );
         }
-        let result = this.defaultValue;
-        if (ref instanceof HTMLElement){
-            for (const query of this.elem){
-                const value = query.getValue(ref);
-                if (this.test(value)){
+        let result = this.defaultValue, query;
+        if ( ref instanceof HTMLElement ){
+            for ( query of this.elem ){
+                const value = query.getValue( ref );
+                if ( this.test( value ) ){
                     result = value;
                     break;
                 }
             }
-        } else if (isPlainObject(ref)){
-            for (const query of this.obj){
-                const value = query.getValue(ref);
-                if (this.test(value)){
+        } else if ( isPlainObject( ref ) ){
+            for ( query of this.obj ){
+                const value = query.getValue( ref );
+                if ( this.test( value ) ){
                     result = value;
                     break;
                 }
             }
         }
-        this.#cache.set(ref, result);
-        return result;
+        const prop = { name: this.name, type: this.typeParser.name, value: result, query, ref };
+        this.parser.trigger( 'get-property', [ prop ] );
+        this.#cache.set( ref, prop.value );
+        return prop.value;
     }
 
     convert(value){
-        return this.#convert(value, this);
+        return this.#convert( value, this );
     }
 
     test(value){
-        return this.#test(value, this);
+        return this.#test( value, this );
     }
 }
-
-export default PropertyParser;

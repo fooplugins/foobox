@@ -1,0 +1,183 @@
+/*!*****************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/public/foobox/modal/index.scss ***!
+  \*****************************************************************************************************************************/
+:root, ::backdrop {
+  --foobox-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --foobox-backdrop-color: rgba(0, 0, 0, 0.5);
+  --foobox-button-color: #FFF;
+  --foobox-button-filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.8));
+  --foobox-caption-background-color: transparent;
+  --foobox-caption-color: #FFF;
+  --foobox-caption-text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+}
+
+html[foobox-open] {
+  overflow: hidden;
+}
+
+[is=foobox-modal] {
+  display: none;
+  font-family: var(--foobox-font-family);
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: none;
+  background-color: transparent;
+}
+
+[is=foobox-modal]::backdrop {
+  background-color: var(--foobox-backdrop-color);
+}
+
+[is=foobox-modal]:is([open]) {
+  display: flex;
+}
+/*!***********************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/public/foobox/modal/inner/index.scss ***!
+  \***********************************************************************************************************************************/
+foobox-inner {
+  position: relative;
+  display: block;
+  width: fit-content;
+  height: fit-content;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+foobox-inner[cover] {
+  width: 100%;
+  height: 100%;
+}
+/*!***********************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/public/foobox/modal/items/index.scss ***!
+  \***********************************************************************************************************************************/
+foobox-items {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+/*!****************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/public/foobox/modal/items/item/index.scss ***!
+  \****************************************************************************************************************************************/
+foobox-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+/*!************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/public/foobox/modal/items/item/caption/index.scss ***!
+  \************************************************************************************************************************************************/
+foobox-caption {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  color: var(--foobox-caption-color);
+  text-shadow: var(--foobox-caption-text-shadow);
+  background-color: var(--foobox-caption-background-color);
+}
+foobox-caption[align-center] {
+  align-items: center;
+}
+foobox-caption[align-left] {
+  align-items: flex-start;
+}
+foobox-caption[align-right] {
+  align-items: flex-end;
+}
+foobox-caption:not([position]), foobox-caption[position=bottom] {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+foobox-caption[position=top] {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+foobox-caption::part(title) {
+  display: block;
+  flex: 1;
+  font-size: larger;
+}
+foobox-caption::part(description) {
+  display: block;
+  flex: 1;
+}
+foobox-caption::part(toolbar) {
+  display: flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+foobox-caption::part(toolbar) button {
+  color: green;
+}
+/*!**********************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/public/foobox/modal/items/item/image/index.scss ***!
+  \**********************************************************************************************************************************************/
+foobox-image {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  transform: scale(1) translateX(0px) translateY(0px);
+}
+foobox-image::part(img) {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  transform: translateZ(0px);
+  object-fit: contain;
+  width: auto;
+  height: auto;
+}
+foobox-image::part(img)[restrict=width] {
+  width: 100%;
+}
+foobox-image::part(img)[restrict=height] {
+  height: 100%;
+}
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/public/foobox/modal/overlay/index.scss ***!
+  \*************************************************************************************************************************************/
+foobox-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+foobox-overlay[cover] {
+  position: fixed;
+}
+
+/*# sourceMappingURL=foobox.css.map*/
