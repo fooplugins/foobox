@@ -5,6 +5,6 @@ module.exports = configure({
     "admin.help": "./src/admin/pro/help.js",
     "admin.settings": "./src/admin/pro/settings.js",
 }, {
-    path: path.resolve(__dirname, "../pro/assets/admin"),
+    path: path.resolve(__dirname, "../../pro/assets/admin"),
     filename: '[name].js'
 }, process.env.NODE_ENV);
