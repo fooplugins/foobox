@@ -1,0 +1,30 @@
+{
+    "name": "fooplugins/foobox",
+    "description": "WordPress popups that help grow your business",
+    "type": "wordpress-plugin",
+    "autoload"    : {
+        "psr-4" : {
+            "FooPlugins\\FooBox\\" : "includes"
+        },
+	  	"classmap": [ "includes" ]
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/{$name}/": ["type:wordpress-plugin"]
+        }
+    },
+    "license": "GPL 3.0",
+    "authors": [
+        {
+            "name": "Brad Vincent"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "require": {
+        "composer/installers": "v1.12.0"
+    }
+}
